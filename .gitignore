@@ -3,4 +3,4 @@
 .vscode/
 
 # mysql data
-./db/data/*
+db/data/
