@@ -1,20 +1,4 @@
 services:
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'recetario'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - ./db/data:/var/lib/mysql
-      - ./db/init:/docker-entrypoint-initdb.d
-
   web:
     build: 
       context: ./web
@@ -22,3 +6,7 @@ services:
     restart: always
     ports:
       - '5000:5000'
+    expose:
+      - '5000'
+    volumes:
+      - ./data/database.db:/db/database.db

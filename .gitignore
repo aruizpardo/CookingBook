@@ -2,5 +2,4 @@
 .idea/
 .vscode/
 
-# mysql data
-db/data/
+# Database
