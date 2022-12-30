@@ -1,3 +1,5 @@
+from flask import request
+
 import os
 import pandas as pd
 import sqlite3
@@ -19,7 +21,10 @@ def home():
 
 
 def insertar_ingrediente():
-   pass
+   engine = get_db_engine()
+   ingrediente = request.json
+   ingredientes = engine.execute('insert into ingredientes (id, nombre) VALUES ({id}, \'{nombre}\')'.format(id=ingrediente['id'], nombre=ingrediente['nombre']))
+   return {"id": ingrediente['id']}
 
 def insertar_instruccion():
    pass

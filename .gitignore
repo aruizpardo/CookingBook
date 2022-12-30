@@ -3,3 +3,4 @@
 .vscode/
 
 # Database
+data/database.db
