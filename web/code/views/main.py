@@ -10,10 +10,55 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 from aux_functions.database import get_db_engine
 
 def home():
-   connection = sqlite3.connect('/db/database.db')
-   connection.row_factory = sqlite3.Row
+   engine = get_db_engine()
 
-   ingredientes = connection.execute('select * from ingredientes').fetchall()
+   ingredientes = engine.execute('select * from ingredientes').fetchall()
    print(ingredientes)
 
    return ingredientes[0]['nombre']
+
+
+def insertar_ingrediente():
+   pass
+
+def insertar_instruccion():
+   pass
+
+def insertar_ingrediente_receta():
+   pass
+
+def insertar_receta():
+   pass
+
+def buscar_recetas_por_ingredientes():
+   pass
+
+def obtener_receta(id):
+   engine = get_db_engine()
+
+   sql_recetas = 'select * from recetas where id = ' + id
+   sql_ingredientes = """
+      SELECT
+         ingredientes.nombre,
+         ingredientes_receta.cantidad
+      FROM ingredientes_receta
+         INNER JOIN ingredientes ON ingredientes_receta.id_ingrediente = ingredientes.id
+      WHERE
+         ingredientes_receta.id_receta = {id_receta}
+      """.format(id_receta = id)
+   sql_instrucciones = """
+      SELECT
+         *
+      FROM instrucciones
+      WHERE id_receta = {id_receta}
+      """.format(id_receta = id)
+
+   receta = engine.execute(sql_recetas).fetchall()
+   ingredientes = engine.execute(sql_ingredientes).fetchall()
+   instrucciones = engine.execute(sql_instrucciones).fetchall()
+
+   return {
+      "receta": receta,
+      "ingredientes": ingredientes,
+      "instrucciones": instrucciones
+   }

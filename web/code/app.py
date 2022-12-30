@@ -15,4 +15,6 @@ from .views import main
 
 
 # Add routes
-app.add_url_rule('/', view_func=main.home)
+app.add_url_rule('/', view_func=main.home, methods=['GET'])
+app.add_url_rule('/buscar_recetas_por_ingredientes', view_func=main.buscar_recetas_por_ingredientes, methods=['GET'])
+app.add_url_rule('/obtener_receta/<id>', view_func=main.obtener_receta, methods=['GET'])
