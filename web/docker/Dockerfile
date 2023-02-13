@@ -9,10 +9,14 @@ RUN pip install --upgrade pip
 COPY docker/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+#Copy entrypoint
+COPY docker/entrypoint.sh /
+RUN chmod 755 /entrypoint.sh
+
 # Copy code
 COPY code /app
 WORKDIR /app
 
 # Expose and command
 EXPOSE 5000
-CMD ["flask", "run"]
+CMD ["sh", "/entrypoint.sh"]
