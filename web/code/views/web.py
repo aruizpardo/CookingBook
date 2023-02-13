@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from aux_functions.database import get_db_engine
 
-def buscar_recetas_por_ingredientes():
+def buscar_recetas_por_ingrediente():
    pass
 
 def home():

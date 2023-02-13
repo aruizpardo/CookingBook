@@ -16,7 +16,7 @@ from .views import api, web
 
 # Add webpage routes
 app.add_url_rule('/', view_func=web.home, methods=['GET'])
-app.add_url_rule('/buscar_recetas_por_ingredientes', view_func=web.buscar_recetas_por_ingredientes, methods=['GET'])
+app.add_url_rule('/buscar_recetas_por_ingrediente', view_func=web.buscar_recetas_por_ingrediente, methods=['GET'])
 app.add_url_rule('/obtener_receta/<id>', view_func=web.obtener_receta, methods=['GET'])
 
 
