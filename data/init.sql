@@ -15,6 +15,7 @@ create table recetas (
     id INTEGER PRIMARY KEY,
     nombre varchar(255) NOT NULL,
     id_tipo int NULL,
+    tiempo_minutos int NOT NULL,
     FOREIGN KEY (id_tipo) REFERENCES tipos(id)
 );
 
