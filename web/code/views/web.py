@@ -1,8 +1,4 @@
-from flask import request
-
 import os
-import pandas as pd
-import sqlite3
 import sys
 
 """ ------------- FOLDER INDEXATION ----------------- """
@@ -11,6 +7,9 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from aux_functions.database import get_db_engine
 
+def buscar_recetas_por_ingredientes():
+   pass
+
 def home():
    engine = get_db_engine()
 
@@ -18,25 +17,6 @@ def home():
    print(ingredientes)
 
    return ingredientes[0]['nombre']
-
-
-def insertar_ingrediente():
-   engine = get_db_engine()
-   ingrediente = request.json
-   ingredientes = engine.execute('insert into ingredientes (id, nombre) VALUES ({id}, \'{nombre}\')'.format(id=ingrediente['id'], nombre=ingrediente['nombre']))
-   return {"id": ingrediente['id']}
-
-def insertar_instruccion():
-   pass
-
-def insertar_ingrediente_receta():
-   pass
-
-def insertar_receta():
-   pass
-
-def buscar_recetas_por_ingredientes():
-   pass
 
 def obtener_receta(id):
    engine = get_db_engine()

@@ -11,13 +11,15 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 
 # Add functions
-from .views import main
+from .views import api, web
 
 
-# Add routes
-app.add_url_rule('/', view_func=main.home, methods=['GET'])
-app.add_url_rule('/buscar_recetas_por_ingredientes', view_func=main.buscar_recetas_por_ingredientes, methods=['GET'])
-app.add_url_rule('/obtener_receta/<id>', view_func=main.obtener_receta, methods=['GET'])
+# Add webpage routes
+app.add_url_rule('/', view_func=web.home, methods=['GET'])
+app.add_url_rule('/buscar_recetas_por_ingredientes', view_func=web.buscar_recetas_por_ingredientes, methods=['GET'])
+app.add_url_rule('/obtener_receta/<id>', view_func=web.obtener_receta, methods=['GET'])
 
-# Insert data
-app.add_url_rule('/insertar_ingrediente', view_func=main.insertar_ingrediente, methods=['POST'])
+
+# Add api routes
+app.add_url_rule('/api/insertar_ingrediente', view_func=api.insertar_ingrediente, methods=['POST'])
+app.add_url_rule('/api/buscar_recetas_por_ingredientes', view_func=api.buscar_recetas_por_ingredientes, methods=['GET'])
